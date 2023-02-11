@@ -8,8 +8,20 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         int numberOfPeople = 0;
         while (numberOfPeople <= 1) {
-            System.out.println("На скольких человек поделить счет?");
-            numberOfPeople = scanner.nextInt();
+            while (true) {
+                Scanner sc = new Scanner(System.in);
+                System.out.println("На скольких человек поделить счет?");
+                if (sc.hasNextInt()) {
+                    numberOfPeople = sc.nextInt();
+                    break;
+                }
+                else {
+                    System.out.println("Некорректное значение! Убедитесь, что вводите целое положительное число!");
+                }
+            }
+            if (numberOfPeople <= 1) {
+                System.out.println("Значение должно быть больше 1");
+            }
         }
         Calculator check = new Calculator();
         while (true) {
@@ -53,7 +65,6 @@ class Calculator {
             }
             else {
                 System.out.println("Некорректное значение! Убедитесь, что вводите цифры в формате РУБЛИ,КОПЕЙКИ");
-                continue;
             }
         }
         Product product = new Product(name, price);
